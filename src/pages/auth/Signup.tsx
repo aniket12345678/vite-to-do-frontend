@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import FormInput from '../../components/FormInput';
 import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import { useSignupMutation } from '../../reducer/authApi';
 
@@ -13,7 +13,7 @@ const { Title, Text } = Typography;
 
 const Signup = () => {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     const [signup] = useSignupMutation();
 
