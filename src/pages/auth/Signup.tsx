@@ -4,12 +4,18 @@ import { useNavigate } from 'react-router-dom';
 import FormInput from '../../components/FormInput';
 import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
+import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
+import { useSignupMutation } from '../../reducer/authApi';
+
 
 const { Title, Text } = Typography;
 
 const Signup = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const [signup] = useSignupMutation();
 
     const validate_fields = Yup.object().shape({
         first_name: Yup.string().required('Enter first name'),
@@ -38,8 +44,11 @@ const Signup = () => {
             confirm_password: '',
         },
         validationSchema: validate_fields,
-        onSubmit: (data) => {
+        onSubmit: async (data) => {
             console.log(data);
+            // dispatch()
+            const store = await signup(data);
+            console.log(store);
         },
     });
 
@@ -66,6 +75,7 @@ const Signup = () => {
                         >
                             <Col md={12}>
                                 <FormInput
+                                    type='text'
                                     placeholder="First Name"
                                     name="first_name"
                                     value={values}
@@ -76,6 +86,7 @@ const Signup = () => {
                             </Col>
                             <Col md={12}>
                                 <FormInput
+                                    type='text'
                                     placeholder="Last Name"
                                     name="last_name"
                                     value={values}
@@ -100,7 +111,7 @@ const Signup = () => {
                             </Col>
                             <Col span={12}>
                                 <Form.Item
-                                    placeholder="Phone Number"
+                                    // placeholder="Phone Number"
                                     validateStatus={errors.phone_number ? 'error' : ''}
                                     help={errors.phone_number}
                                 >

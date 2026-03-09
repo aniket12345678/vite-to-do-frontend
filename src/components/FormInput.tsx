@@ -3,13 +3,14 @@ import { Input } from 'antd'
 interface FormProps {
     type: string,
     name: string,
-    value: Record<string, any>
-    onChange: () => void,
+    value: Record<string, any>,
+    touched: Record<string, any>,
+    onChange: (e: React.ChangeEvent) => void,
     placeholder: string,
     errors: Record<string, any>
 }
 
-const FormInput = ({ type, name, value, onChange, placeholder, errors }: FormProps) => {
+const FormInput = ({ type, name, value, onChange, placeholder, errors, touched }: FormProps) => {
     return (
         <>
             <Input
@@ -19,7 +20,7 @@ const FormInput = ({ type, name, value, onChange, placeholder, errors }: FormPro
                 name={name}
                 placeholder={placeholder}
             />
-            <div style={{ textAlign: 'justify' }}>{errors[name]}</div>
+            {touched[name] && errors[name] && <div style={{ textAlign: 'justify' }}>{errors[name]}</div>}
         </>
     )
 }

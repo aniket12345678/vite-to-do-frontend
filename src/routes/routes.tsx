@@ -1,10 +1,12 @@
+import { lazy } from 'react';
 import { RouteObject } from 'react-router-dom';
-import Signin from '../pages/auth/Signin';
-import Signup from '../pages/auth/Signup';
-import Home from '../pages/Home';
-import Profile from '../pages/Profile';
-import ProtectedRoutes from '../components/ProtectedRoutes';
-import Layout from '../components/Layout';
+
+const Profile = lazy(() => import('../pages/Profile'));
+const Home = lazy(() => import('../pages/Home'));
+const Signup = lazy(() => import('../pages/auth/Signup'));
+const Signin = lazy(() => import('../pages/auth/Signin'));
+const ProtectedRoutes = lazy(() => import('../components/ProtectedRoutes'));
+
 
 const Heading = () => <div> Loading</div>
 
@@ -26,15 +28,15 @@ const AUTH_ROUTES: RouteObject[] = [
 ];
 const MAIN_ROUTES: RouteObject[] = [
     {
-        path: '/to-do',
+        path: 'to-do',
         element: <ProtectedRoutes />,
         children: [
             {
                 children: [
                     {
                         index: true,
-                        // element: <Home />
-                        element: <Layout />
+                        element: <Home />
+                        // element: <Layout />
                     },
                     {
                         path: 'profile',
