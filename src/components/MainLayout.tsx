@@ -3,12 +3,16 @@ import { Breadcrumb, Layout, Menu, theme } from 'antd';
 
 const { Header, Content, Footer } = Layout;
 
+interface MainLayoutProps {
+    Page: React.ComponentType;
+}
+
 const items = Array.from({ length: 15 }).map((_, index) => ({
     key: index + 1,
     label: `nav ${index + 1}`,
 }));
 
-const App: React.FC = () => {
+const App: React.FC<MainLayoutProps> = ({ Page }) => {
     const {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
@@ -39,6 +43,7 @@ const App: React.FC = () => {
                     }}
                 >
                     Content
+                    <Page />
                 </div>
             </Content>
             <Footer style={{ textAlign: 'center' }}>
