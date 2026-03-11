@@ -6,6 +6,10 @@ const Home = lazy(() => import('../pages/Home'));
 const Signup = lazy(() => import('../pages/auth/Signup'));
 const Signin = lazy(() => import('../pages/auth/Signin'));
 const ProtectedRoutes = lazy(() => import('../components/ProtectedRoutes'));
+// const Signin = lazy(() => import('../comp'));
+
+import MainLayout from '../components/MainLayout'
+
 
 
 const Heading = () => <div> Loading</div>
@@ -35,8 +39,8 @@ const MAIN_ROUTES: RouteObject[] = [
                 children: [
                     {
                         index: true,
-                        element: <Home />
-                        // element: <Layout />
+                        // element: <Home />
+                        element: <MainLayout Page={Home} />
                     },
                     {
                         path: 'profile',
